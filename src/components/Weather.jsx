@@ -35,7 +35,7 @@ const Weather = () => {
 
     const search = async (city) => {
         //IF SEARCH BAR IS EMPTY,notify user to enter city name  
-        if(!city === "") {
+        if(city === "") {
             alert("Enter City Name");
             return;
         }
@@ -67,7 +67,7 @@ const Weather = () => {
     }
     
     /*UseEffect seems to be giving error when i past it in suggestion is 
-    i could fetch the data like that 
+    i could fetch the data like that...
     */
     useEffect(() =>{
         // search();
@@ -75,37 +75,42 @@ const Weather = () => {
     },[])
 
   return (
-    <div className='weather'>
-      <div className='search-bar'>
-        <input ref={inputRef} type="text" placeholder='Search' />
-        <img src={search_icon} alt="" onClick={()=>search(inputRef.current.value)}/>
-      </div>
-      {/* Iternay operator to check if WeatherData is displayed */}
-      {WeatherData?<>
-        <img src={WeatherData.icon} alt="" className='weather-icon'/>
-        <p className='temperature'>{WeatherData.temperature}°C</p>
-        <p className='location'>{WeatherData.location}</p>
+    <>
+        <div className='weather'>
+            <div className='search-bar'>
+                <input ref={inputRef} type="text" placeholder='Search' />
+                <img src={search_icon} alt="" onClick={()=>search(inputRef.current.value)}/>
+            </div>
 
-        {/* Weather data  */}
-        <div className="weather-data">
-            <div className="col">
-                <img src={humidity_icon} alt="" />
-                <div>
-                    <p>{WeatherData.humidity}</p>
-                    <span>Humdity</span>
+            
+            {/* Iternay operator to check if WeatherData is displayed */}
+            {WeatherData?<>
+                <img src={WeatherData.icon} alt="" className='weather-icon'/>
+                <p className='temperature'>{WeatherData.temperature}°C</p>
+                <p className='location'>{WeatherData.location}</p>
+
+                {/* Weather data  */}
+                <div className="weather-data">
+                    <div className="col">
+                        <img src={humidity_icon} alt="" />
+                        <div>
+                            <p>{WeatherData.humidity}</p>
+                            <span>Humdity</span>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <img src={wind_icon} alt="" />
+                        <div>
+                            <p>{WeatherData.windSpeed}</p>
+                            <span>Wind Speed</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className="col">
-                <img src={wind_icon} alt="" />
-                <div>
-                    <p>{WeatherData.windSpeed}</p>
-                    <span>Wind Speed</span>
-                </div>
-            </div>
-        </div>
-      </>:<></>}
+            </>:<></>}
       
-    </div>
+        </div>
+    </>
+
   )
 }
 
